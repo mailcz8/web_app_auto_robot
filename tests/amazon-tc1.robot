@@ -1,4 +1,4 @@
-*** Settings ***
+ *** Settings ***
 Documentation  This is basic info about the amazon test cases
 Resource  ../resources/common.robot
 Resource  ../resources/amazon.robot

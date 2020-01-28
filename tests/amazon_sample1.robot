@@ -13,7 +13,7 @@ ${SampleItem}         a-m-us a-aui_157141-c a-aui_158613-t1 a-aui_72554-c a-aui_
 *** Test Cases ***
 User opens a web-site
     [Documentation]  This is some basic info about the test
-    [Tags]  Smoke  Acceptance  Regression
+    [Tags]  Smoke  Acceptance  Regression   P0
 #    Open Browser  ${TestURL_Google}  firefox
     Open browser  ${TestURL_Google}  chrome
     Go To   ${TestURL_Yahoo}

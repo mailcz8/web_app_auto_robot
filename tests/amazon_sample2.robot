@@ -13,21 +13,21 @@ Test open browser to amazon
 
 User opens amazon web-site 1 Smoke
     [Documentation]  This is some basic info about the test
-    [Tags]  Smoke  Acceptance
+    [Tags]  Smoke  Acceptance   P0
     open browser  ${TestURL}  @{BrowzerType}[1]
     sleep  2
     close browser
 
 User opens amazon web-site acceptance
     [Documentation]  This is some basic info about the test
-    [Tags]  Smoke  Acceptance
+    [Tags]  Smoke  Acceptance   P1
     open browser  ${TestURL}  @{BrowzerType}[1]
     sleep  2
     close browser
 
 User opens amazon web-site 2 Regression 1
     [Documentation]  Test for open browser 2nd time
-    [Tags]  Regression
+    [Tags]  Regression      P3
     open browser  ${TestURL}  @{BrowzerType}[1]
     sleep  2
     close all browsers
@@ -41,8 +41,8 @@ User opens amazon web-site 3 Regression 2
 
 Test case 4
     [Documentation]  test case 4 title
-    [Tags]  Smoke
-    log  I am test case 1 of API feature
+    [Tags]  Functional  P4
+    log to console  I am test case 1 of API feature
 
 *** Keywords ***
 Begin Web Test

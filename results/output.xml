@@ -1,46 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.0.4 (Python 3.7.1 on darwin)" generated="20181026 12:45:11.322">
-<suite id="s1" name="Amazon-New" source="/Users/chang.zheng/github/dooTempRepo/amazon/tests/amazon-new.robot">
-<test id="s1-t1" name="User opens a web-site">
-<kw name="Begin Web Test" type="setup">
-<msg timestamp="20181026 12:45:11.349" level="FAIL">No keyword with name 'Begin Web Test' found.</msg>
-<status status="FAIL" starttime="20181026 12:45:11.349" endtime="20181026 12:45:11.349"></status>
+<robot generator="Robot 3.1.2 (Python 3.6.5 on darwin)" generated="20200128 09:13:01.508" rpa="false">
+<suite id="s1" name="Tests" source="/Users/chang/dev/github_mailcz8/web_app_auto_robot/tests">
+<suite id="s1-s1" name="Amazon Sample1" source="/Users/chang/dev/github_mailcz8/web_app_auto_robot/tests/amazon_sample1.robot">
+<test id="s1-s1-t1" name="User opens a web-site">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>${TestURL_Google}</arg>
+<arg>chrome</arg>
+</arguments>
+<msg timestamp="20200128 09:13:01.793" level="INFO">Opening browser 'chrome' to base url 'https://www.google.com/'.</msg>
+<status status="PASS" starttime="20200128 09:13:01.792" endtime="20200128 09:13:08.373"></status>
 </kw>
-<kw name="common.End Web Test" type="teardown">
-<msg timestamp="20181026 12:45:11.351" level="FAIL">No keyword with name 'common.End Web Test' found.</msg>
-<status status="FAIL" starttime="20181026 12:45:11.351" endtime="20181026 12:45:11.351">No keyword with name 'common.End Web Test' found.</status>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
+<arguments>
+<arg>${TestURL_Yahoo}</arg>
+</arguments>
+<msg timestamp="20200128 09:13:08.376" level="INFO">Opening url 'https://www.yahoo.com/'</msg>
+<status status="PASS" starttime="20200128 09:13:08.374" endtime="20200128 09:13:16.575"></status>
+</kw>
+<kw name="Go Back" library="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" starttime="20200128 09:13:16.576" endtime="20200128 09:13:18.047"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1</arg>
+</arguments>
+<msg timestamp="20200128 09:13:19.049" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20200128 09:13:18.047" endtime="20200128 09:13:19.049"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
+<arguments>
+<arg>http://www.amazon.com</arg>
+</arguments>
+<msg timestamp="20200128 09:13:19.050" level="INFO">Opening url 'http://www.amazon.com'</msg>
+<status status="PASS" starttime="20200128 09:13:19.050" endtime="20200128 09:13:24.999"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=twotabsearchtextbox</arg>
+<arg>${TextCheck}</arg>
+</arguments>
+<msg timestamp="20200128 09:13:25.000" level="INFO">Typing text 'Ferrari 458' into text field 'id=twotabsearchtextbox'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<msg timestamp="20200128 09:13:27.060" level="FAIL">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=2.43.600229 (3fae4d0cda5334b4f533bede5a4787f7b832d052),platform=Mac OS X 10.13.6 x86_64)
+</msg>
+<status status="FAIL" starttime="20200128 09:13:27.049" endtime="20200128 09:13:27.061"></status>
+</kw>
+<msg timestamp="20200128 09:13:27.061" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=2.43.600229 (3fae4d0cda5334b4f533bede5a4787f7b832d052),platform=Mac OS X 10.13.6 x86_64)
+</msg>
+<msg timestamp="20200128 09:13:27.065" level="FAIL">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=2.43.600229 (3fae4d0cda5334b4f533bede5a4787f7b832d052),platform=Mac OS X 10.13.6 x86_64)
+</msg>
+<status status="FAIL" starttime="20200128 09:13:24.999" endtime="20200128 09:13:27.065"></status>
+</kw>
+<kw name="Run Keyword If Test Failed" library="BuiltIn" type="teardown">
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<arguments>
+<arg>Close Browser</arg>
+</arguments>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200128 09:13:27.069" endtime="20200128 09:13:27.362"></status>
+</kw>
+<status status="PASS" starttime="20200128 09:13:27.067" endtime="20200128 09:13:27.362"></status>
 </kw>
 <doc>This is some basic info about the test</doc>
 <tags>
 <tag>Acceptance</tag>
+<tag>P0</tag>
 <tag>Regression</tag>
 <tag>Smoke</tag>
 </tags>
-<status status="FAIL" starttime="20181026 12:45:11.348" endtime="20181026 12:45:11.351" critical="yes">Setup failed:
-No keyword with name 'Begin Web Test' found.
-
-Also teardown failed:
-No keyword with name 'common.End Web Test' found.</status>
+<status status="FAIL" starttime="20200128 09:13:01.791" endtime="20200128 09:13:27.362" critical="yes">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=2.43.600229 (3fae4d0cda5334b4f533bede5a4787f7b832d052),platform=Mac OS X 10.13.6 x86_64)
+</status>
 </test>
 <doc>This is basic info about the Byton test cases</doc>
-<status status="FAIL" starttime="20181026 12:45:11.325" endtime="20181026 12:45:11.351"></status>
+<status status="FAIL" starttime="20200128 09:13:01.553" endtime="20200128 09:13:27.367"></status>
+</suite>
+<suite id="s1-s2" name="Amazon Sample2" source="/Users/chang/dev/github_mailcz8/web_app_auto_robot/tests/amazon_sample2.robot">
+<test id="s1-s2-t1" name="User opens amazon web-site 1 Smoke">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>${TestURL}</arg>
+<arg>@{BrowzerType}[1]</arg>
+</arguments>
+<msg timestamp="20200128 09:13:27.389" level="INFO">Opening browser 'chrome' to base url 'http://www.amazon.com'.</msg>
+<status status="PASS" starttime="20200128 09:13:27.388" endtime="20200128 09:13:34.998"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20200128 09:13:37.001" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20200128 09:13:34.999" endtime="20200128 09:13:37.002"></status>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200128 09:13:37.003" endtime="20200128 09:13:37.194"></status>
+</kw>
+<doc>This is some basic info about the test</doc>
+<tags>
+<tag>Acceptance</tag>
+<tag>P0</tag>
+<tag>Smoke</tag>
+</tags>
+<status status="PASS" starttime="20200128 09:13:27.386" endtime="20200128 09:13:37.194" critical="yes"></status>
+</test>
+<doc>This is basic info about the amazon test cases</doc>
+<status status="PASS" starttime="20200128 09:13:27.374" endtime="20200128 09:13:37.197"></status>
+</suite>
+<status status="FAIL" starttime="20200128 09:13:01.510" endtime="20200128 09:13:37.201"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1">Critical Tests</stat>
-<stat pass="0" fail="1">All Tests</stat>
+<stat pass="1" fail="1">Critical Tests</stat>
+<stat pass="1" fail="1">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1">Acceptance</stat>
+<stat pass="1" fail="1">Acceptance</stat>
+<stat pass="1" fail="1">P0</stat>
 <stat pass="0" fail="1">Regression</stat>
-<stat pass="0" fail="1">Smoke</stat>
+<stat pass="1" fail="1">Smoke</stat>
 </tag>
 <suite>
-<stat pass="0" fail="1" id="s1" name="Amazon-New">Amazon-New</stat>
+<stat pass="1" fail="1" id="s1" name="Tests">Tests</stat>
+<stat pass="0" fail="1" id="s1-s1" name="Amazon Sample1">Tests.Amazon Sample1</stat>
+<stat pass="1" fail="0" id="s1-s2" name="Amazon Sample2">Tests.Amazon Sample2</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20181026 12:45:11.347" level="ERROR">Error in file '/Users/chang.zheng/github/dooTempRepo/amazon/tests/amazon-new.robot': Resource file 'Resources/amazon.robot' does not exist.</msg>
-<msg timestamp="20181026 12:45:11.347" level="ERROR">Error in file '/Users/chang.zheng/github/dooTempRepo/amazon/tests/amazon-new.robot': Resource file 'Resources/common.robot' does not exist.</msg>
+<msg timestamp="20200128 09:13:01.490" level="WARN">Collapsing consecutive whitespace during parsing is deprecated. Fix ' *** Settings ***' in file '/Users/chang/dev/github_mailcz8/web_app_auto_robot/tests/amazon-tc1.robot' on line 1.</msg>
+<msg timestamp="20200128 09:13:27.061" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=79.0.3945.130)
+  (Driver info: chromedriver=2.43.600229 (3fae4d0cda5334b4f533bede5a4787f7b832d052),platform=Mac OS X 10.13.6 x86_64)
+</msg>
 </errors>
 </robot>
