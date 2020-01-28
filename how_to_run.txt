@@ -1,2 +1,0 @@
-export PATH=$PATH:/path/to/web/drivers/
-robot --argumentfile config/args.arg  -d result tests/
