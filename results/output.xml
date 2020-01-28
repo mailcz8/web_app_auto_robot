@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.4 (Python 3.7.1 on darwin)" generated="20181026 12:45:11.322">
+<suite id="s1" name="Amazon-New" source="/Users/chang.zheng/github/dooTempRepo/amazon/tests/amazon-new.robot">
+<test id="s1-t1" name="User opens a web-site">
+<kw name="Begin Web Test" type="setup">
+<msg timestamp="20181026 12:45:11.349" level="FAIL">No keyword with name 'Begin Web Test' found.</msg>
+<status status="FAIL" starttime="20181026 12:45:11.349" endtime="20181026 12:45:11.349"></status>
+</kw>
+<kw name="common.End Web Test" type="teardown">
+<msg timestamp="20181026 12:45:11.351" level="FAIL">No keyword with name 'common.End Web Test' found.</msg>
+<status status="FAIL" starttime="20181026 12:45:11.351" endtime="20181026 12:45:11.351">No keyword with name 'common.End Web Test' found.</status>
+</kw>
+<doc>This is some basic info about the test</doc>
+<tags>
+<tag>Acceptance</tag>
+<tag>Regression</tag>
+<tag>Smoke</tag>
+</tags>
+<status status="FAIL" starttime="20181026 12:45:11.348" endtime="20181026 12:45:11.351" critical="yes">Setup failed:
+No keyword with name 'Begin Web Test' found.
+
+Also teardown failed:
+No keyword with name 'common.End Web Test' found.</status>
+</test>
+<doc>This is basic info about the Byton test cases</doc>
+<status status="FAIL" starttime="20181026 12:45:11.325" endtime="20181026 12:45:11.351"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">Acceptance</stat>
+<stat pass="0" fail="1">Regression</stat>
+<stat pass="0" fail="1">Smoke</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Amazon-New">Amazon-New</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20181026 12:45:11.347" level="ERROR">Error in file '/Users/chang.zheng/github/dooTempRepo/amazon/tests/amazon-new.robot': Resource file 'Resources/amazon.robot' does not exist.</msg>
+<msg timestamp="20181026 12:45:11.347" level="ERROR">Error in file '/Users/chang.zheng/github/dooTempRepo/amazon/tests/amazon-new.robot': Resource file 'Resources/common.robot' does not exist.</msg>
+</errors>
+</robot>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.4 (Python 3.7.1 on darwin)" generated="20200127 13:24:20.977">
+<suite id="s1" name="Amazon-Old" source="/Users/chang.zheng/github/dooTempRepo/amazon/tests/amazon-old.robot">
+<test id="s1-t1" name="User opens a web-site">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>${TestURL_Google}</arg>
+<arg>chrome</arg>
+</arguments>
+<msg timestamp="20200127 13:24:21.160" level="INFO">Opening browser 'chrome' to base url 'https://www.google.com/'.</msg>
+<status status="PASS" starttime="20200127 13:24:21.160" endtime="20200127 13:24:24.187"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
+<arguments>
+<arg>${TestURL_Yahoo}</arg>
+</arguments>
+<msg timestamp="20200127 13:24:24.188" level="INFO">Opening url 'https://www.yahoo.com/'</msg>
+<status status="PASS" starttime="20200127 13:24:24.188" endtime="20200127 13:24:32.833"></status>
+</kw>
+<kw name="Go Back" library="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" starttime="20200127 13:24:32.833" endtime="20200127 13:24:33.449"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1</arg>
+</arguments>
+<msg timestamp="20200127 13:24:34.450" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20200127 13:24:33.449" endtime="20200127 13:24:34.451"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
+<arguments>
+<arg>http://www.amazon.com</arg>
+</arguments>
+<msg timestamp="20200127 13:24:34.451" level="INFO">Opening url 'http://www.amazon.com'</msg>
+<status status="PASS" starttime="20200127 13:24:34.451" endtime="20200127 13:24:36.298"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=twotabsearchtextbox</arg>
+<arg>${TextCheck}</arg>
+</arguments>
+<msg timestamp="20200127 13:24:36.299" level="INFO">Typing text 'Ferrari 458' into text field 'id=twotabsearchtextbox'.</msg>
+<status status="PASS" starttime="20200127 13:24:36.299" endtime="20200127 13:24:36.950"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks button identified by ``locator``.</doc>
+<arguments>
+<arg>class=nav-input</arg>
+</arguments>
+<msg timestamp="20200127 13:24:36.951" level="INFO">Clicking button 'class=nav-input'.</msg>
+<status status="PASS" starttime="20200127 13:24:36.950" endtime="20200127 13:24:38.896"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on current page.</doc>
+<arguments>
+<arg>results for "${TextCheck}"</arg>
+</arguments>
+<status status="PASS" starttime="20200127 13:24:38.897" endtime="20200127 13:24:38.924"></status>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<doc>Clicks a link identified by ``locator``.</doc>
+<arguments>
+<arg>css=#result_C a.s-access-detail-page</arg>
+</arguments>
+<msg timestamp="20200127 13:24:38.925" level="INFO">Clicking link 'css=#result_C a.s-access-detail-page'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<msg timestamp="20200127 13:24:39.422" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-15.png"&gt;&lt;img src="selenium-screenshot-15.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200127 13:24:38.933" endtime="20200127 13:24:39.423"></status>
+</kw>
+<msg timestamp="20200127 13:24:39.433" level="FAIL">Link with locator 'css=#result_C a.s-access-detail-page' not found.</msg>
+<status status="FAIL" starttime="20200127 13:24:38.924" endtime="20200127 13:24:39.433"></status>
+</kw>
+<kw name="Run Keyword If Test Failed" library="BuiltIn" type="teardown">
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<arguments>
+<arg>Close Browser</arg>
+</arguments>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200127 13:24:39.435" endtime="20200127 13:24:39.695"></status>
+</kw>
+<status status="PASS" starttime="20200127 13:24:39.434" endtime="20200127 13:24:39.696"></status>
+</kw>
+<doc>This is some basic info about the test</doc>
+<tags>
+<tag>Acceptance</tag>
+<tag>Regression</tag>
+<tag>Smoke</tag>
+</tags>
+<status status="FAIL" starttime="20200127 13:24:21.160" endtime="20200127 13:24:39.696" critical="yes">Link with locator 'css=#result_C a.s-access-detail-page' not found.</status>
+</test>
+<doc>This is basic info about the Byton test cases</doc>
+<status status="FAIL" starttime="20200127 13:24:20.978" endtime="20200127 13:24:39.697"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">Acceptance</stat>
+<stat pass="0" fail="1">Regression</stat>
+<stat pass="0" fail="1">Smoke</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Amazon-Old">Amazon-Old</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
