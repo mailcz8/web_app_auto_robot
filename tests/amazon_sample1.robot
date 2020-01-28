@@ -7,7 +7,7 @@ Test Teardown   Run Keyword If Test Failed   Close Browser
 ${TextCheck}  Ferrari 458
 ${TestURL_Google}     https://www.google.com/
 ${TestURL_Yahoo}      https://www.yahoo.com/
-${TestURL_XYZ}        https://www.xyz.com/
+${TestURL_herokuapp}     http://the-internet.herokuapp.com/
 ${SampleItem}         a-m-us a-aui_157141-c a-aui_158613-t1 a-aui_72554-c a-aui_dropdown_187959-c a-aui_pci_risk_banner_210084-c a-aui_perf_130093-c a-aui_tnr_v2_180836-c a-aui_ux_145937-c a-meter-animate
 
 *** Test Cases ***
