@@ -1,16 +1,19 @@
+Pull repl: git clone:
+git@github.com:mailcz8/web_app_auto_robot.git
+
 Setup virtualenv:
 pip install virtualenv
 virtualenv venv
 source venv/bin/activate
-deactivate
 
 Export driver:
-cd <your_driver_parent_path>
+cd <web_driver_path>
 pwd
-export PATH=$PATH:/<your_driver_parent_path>
+export PATH=$PATH:/<web_driver_path>
 
 Install Libraries:
-pip install -r requirements.txt
+pip install -r setup/requirements.txt
 
 Run testcases
+@repl_home_dir
 robot --argumentfile config/args.arg  -d results -i P0 tests/
