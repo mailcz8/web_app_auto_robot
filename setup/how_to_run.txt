@@ -7,10 +7,10 @@ deactivate
 Export driver:
 cd <your_driver_parent_path>
 pwd
-export PATH=$PATH:/<your_driver_parent_path>/drivers/
+export PATH=$PATH:/<your_driver_parent_path>
 
 Install Libraries:
 pip install -r requirements.txt
 
 Run testcases
-robot --argumentfile config/args.arg  -d result tests/
+robot --argumentfile config/args.arg  -d results -i P0 tests/
