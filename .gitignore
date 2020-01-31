@@ -1,5 +1,8 @@
 # Custom
 results/
+results/log.html
+results/output.xml
+results/report.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
