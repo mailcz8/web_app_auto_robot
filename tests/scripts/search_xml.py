@@ -1,5 +1,19 @@
+import os
+import time
+import re
 
+cur_dir = os.path.abspath('.')
+repl_dir = os.path.dirname(os.path.dirname(cur_dir))
+result_dir = os.path.join(repl_dir,'results')
 file_name = 'output.xml'
+file_name = os.path.join(result_dir,file_name)
+
+def get_foldr_content(f_path):
+    folder_info = os.walk(f_path)
+    print(folder_info)
+    for a, b, c in folder_info:
+        print(a, b, c)
+get_foldr_content(result_dir)
 
 def find_end(f_name):
     f = open(f_name, 'r')
@@ -27,4 +41,4 @@ def get_keywords(begin_line):
     for i in range(start_line,len(data)):
         print(data[i])
 
-get_keywords('Go To')
+# get_keywords('Go To')
