@@ -9,7 +9,7 @@ Setup virtualenv:
 Export driver:
 #>cd <web_driver_path>
 #>pwd
-#>export PATH=$PATH:/<web_driver_path>
+#>export PATH=$PATH:/resources/<web_driver_path>
 
 Install Libraries:
 #>pip install -r setup/requirements.txt
