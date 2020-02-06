@@ -1,14 +1,16 @@
 *** Settings ***
 Documentation  This is basic info about the Byton test cases
-Library  SeleniumLibrary
+Library     AppiumLibrary
 
 *** Variables ***
 
 
 *** Test Cases ***
-Test case 1
-    Do Something
-    Do Something Else
+Open Application On Android
+      Open Application     http://localhost:4725     udid=< deviceid > platformName=Android
+      ...  deviceName=AndroidDevice     app=com.google.android.calendar
+      ...  appActivity= com.android.providers.calendar
+     [Teardown]     Close Application
 
 Test case 2
     Do Another Thing
