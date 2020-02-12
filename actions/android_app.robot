@@ -9,14 +9,14 @@ Library     Collections
 *** Variable ***
 ${oper_delay}    6s
 ${remote_url}   http://&{test_conf['appium']}[server]:&{test_conf['appium']}[port]/wd/hub
-&{desire_cap}   platformName=Android    platformVersion=&{test_conf['drt']}[android_ver]
-...    automationName=uiautomator2    deviceName=&{test_conf['drt']}[devname]    newCommandTimeout=600    
-...    appPackage=&{test_conf['drt']}[app_package]    appActivity=&{test_conf['drt']}[app_activity]
+&{desire_cap}   platformName=Android    platformVersion=&{test_conf['main_device_id']}[android_ver]
+...    automationName=uiautomator2    deviceName=&{test_conf['main_device_id']}[devname]    newCommandTimeout=600    
+...    appPackage=&{test_conf['main_device_id']}[app_package]    appActivity=&{test_conf['main_device_id']}[app_activity]
 ...    noSign=${True}    noReset=${True}    dontStopAppOnReset=${True}    unicodeKeyboard=${False}    resetKeyboard=${True}    alias=BaiduMap
 ...    appWaitDuration=90000       printPageSourceOnFindFailure=${True}
-&{baiduapp}      app=com.baidu.naviauto      appAct=com.baidu.naviauto.NaviAutoActivity
+&{main_device_id}      app=com.baidu.naviauto      appAct=com.baidu.naviauto.NaviAutoActivity
 &{voiceassistant}      app=com.baidu.che.codriver      appAct=com.baidu.che.codriver.ui.MainActivity
-${split_button}    com.byton.launcher:id/split_button
+${split_button}    com.amazon.launcher:id/split_button
 
 *** Test Cases ***
 Print Log Now
@@ -26,7 +26,7 @@ Print Log Now
     log to console     ${\n}line remote_url:${remote_url}
     log      ${\n}line remote_url:${remote_url}
     log to console     ${\n}line desire_cap:&{desire_cap}
-    log to console     ${\n}line baiduapp:&{baiduapp}
+    log to console     ${\n}line main_device_id:&{main_device_id}
     log to console     ${\n}line voiceassistant:&{voiceassistant}
     log to console     ${\n}line split_button:${split_button}
 
@@ -39,18 +39,18 @@ Start App
     ...    *Examples:*
     ...    | Start App |
     ${s}=       Run Keyword and Return Status   AppiumLibrary.Open Application        ${remote_url}       alias=&{desire_cap}[alias]       &{desire_cap} 
-    Run Keyword IF      ${s}==${False}      Start ADB Command       adb -s &{test_conf['drt']}[devudid] shell pm clear com.android.settings 
+    Run Keyword IF      ${s}==${False}      Start ADB Command       adb -s &{test_conf['main_device_id']}[devudid] shell pm clear com.android.settings 
     Run Keyword IF      ${s}==${False}      AppiumLibrary.Open Application        ${remote_url}       alias=&{desire_cap}[alias]       &{desire_cap} 
 
 Close BaiduMap
     [Documentation]
-    ...    This keyword is used to close DRT on android.
+    ...    This keyword is used to close main_device_id on android.
     ...    
     ...    *Examples:*
     ...    | Close DT |
     #Switch Application    BaiduMap
     #Quit Application
-    Start ADB Command    adb -s &{test_conf['drt']}[devudid] shell am force-stop &{baiduapp}[app]
+    Start ADB Command    adb -s &{test_conf['main_device_id']}[devudid] shell am force-stop &{main_device_id}[app]
 
 Click Split_Mode Toggle
     [Documentation]    
@@ -120,7 +120,7 @@ Get Element Text
     ...    This keyword is used on get text from the locator
     ...    
     ...    *Examples:*
-    ...    | Get Element Text | id=com.byton.ice.multimedia:id/test |
+    ...    | Get Element Text | id=com.amazon.ice.multimedia:id/test |
     [Arguments]    ${locator}
     ${r}    AppiumLibrary.Get Element Attribute    ${locator}       text
     [Return]    ${r}
@@ -136,29 +136,29 @@ Input Text
 
 Open Baidu Map
     [Documentation]    
-    ...    This keyword is used to open Baidu Map on DRT
+    ...    This keyword is used to open Baidu Map on main_device_id
     ...    
     ...    *Examples:*
     ...    | Open Baidu Map |
     Run Keyword And Ignore Error       launch application
-    Run Keyword And Ignore Error       Start Activity    &{baiduapp}[app]    &{baiduapp}[appAct]        intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
+    Run Keyword And Ignore Error       Start Activity    &{main_device_id}[app]    &{main_device_id}[appAct]        intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
 
 
 Open Ximalaya
-    ${s}=       Run Keyword and Return Status   Start Activity   com.byton.ice.android.multimedia    com.byton.ice.android.multimedia.ui.main.SEDDisplayActivity    appWaitActivity=com.byton.ice.android.multimedia.ui.main.*        intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
-    Run Keyword IF      ${s}==${False}      Start Activity   com.byton.ice.android.multimedia    com.byton.ice.android.multimedia.ui.main.SEDDisplayActivity    appWaitActivity=com.byton.ice.android.multimedia.ui.main.*        intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
+    ${s}=       Run Keyword and Return Status   Start Activity   com.amazon.ice.android.multimedia    com.amazon.ice.android.multimedia.ui.main.SEDDisplayActivity    appWaitActivity=com.amazon.ice.android.multimedia.ui.main.*        intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
+    Run Keyword IF      ${s}==${False}      Start Activity   com.amazon.ice.android.multimedia    com.amazon.ice.android.multimedia.ui.main.SEDDisplayActivity    appWaitActivity=com.amazon.ice.android.multimedia.ui.main.*        intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
 
 Open dianping
-    ${s}=       Run Keyword and Return Status   Start Activity   com.byton.ice.dianping    com.byton.ice.dianping.ui.LoadingActivity    appWaitActivity=com.byton.ice.ui.*       intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
-    Run Keyword IF      ${s}==${False}      Start Activity   com.byton.ice.dianping    com.byton.ice.dianping.ui.LoadingActivity    appWaitActivity=com.byton.ice.ui.*        intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
+    ${s}=       Run Keyword and Return Status   Start Activity   com.amazon.ice.dianping    com.amazon.ice.dianping.ui.LoadingActivity    appWaitActivity=com.amazon.ice.ui.*       intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
+    Run Keyword IF      ${s}==${False}      Start Activity   com.amazon.ice.dianping    com.amazon.ice.dianping.ui.LoadingActivity    appWaitActivity=com.amazon.ice.ui.*        intentAction=android.intent.action.MAIN    intentCategory=android.intent.category.LAUNCHER    intentFlags=0x10200000
 
 Launch Nav App
     [Documentation]
-    ...    This keyword is used to launch Navigation app from DRT and have SED display map
+    ...    This keyword is used to launch Navigation app from main_device_id and have SED display map
     ...
     ...    *Examples:*
     ...    | Launch Nav App |
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell am start -n "&{baiduapp}[app]/&{baiduapp}[appAct]" --display 6
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell am start -n "&{main_device_id}[app]/&{main_device_id}[appAct]" --display 6
     Run Keyword And Ignore Error    Bypass Init Screen
     Sleep   5s
     Bypass Battery Low Popup
@@ -168,21 +168,21 @@ Bypass Battery Low Popup
     Run Keyword IF      ${s}==${True}         Click Text       知道了
 
 Clear Map Data
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell pm clear com.baidu.naviauto
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell pm clear com.baidu.naviauto
 
 Grant Android Permission
     [Arguments]     ${pkg}
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell pm grant ${pkg} android.permission.ACCESS_FINE_LOCATION
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell pm grant ${pkg} android.permission.READ_EXTERNAL_STORAGE
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell pm grant ${pkg} android.permission.ACCESS_COARSE_LOCATION
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell pm grant ${pkg} android.permission.READ_PHONE_STATE
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell pm grant ${pkg} android.permission.CALL_PHONE
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell pm grant ${pkg} android.permission.PROCESS_OUTGOING_CALLS
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell pm grant ${pkg} android.permission.WRITE_EXTERNAL_STORAGE
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell pm grant ${pkg} android.permission.ACCESS_FINE_LOCATION
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell pm grant ${pkg} android.permission.READ_EXTERNAL_STORAGE
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell pm grant ${pkg} android.permission.ACCESS_COARSE_LOCATION
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell pm grant ${pkg} android.permission.READ_PHONE_STATE
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell pm grant ${pkg} android.permission.CALL_PHONE
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell pm grant ${pkg} android.permission.PROCESS_OUTGOING_CALLS
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell pm grant ${pkg} android.permission.WRITE_EXTERNAL_STORAGE
 
 Set Battery Level
     [Arguments]     ${battery_level}
-    Start ADB Command      adb -s &{test_conf['drt']}[devudid] shell am broadcast -a com.byton.nav.setting --es battery_percentage ${battery_level}
+    Start ADB Command      adb -s &{test_conf['main_device_id']}[devudid] shell am broadcast -a com.amazon.nav.setting --es battery_percentage ${battery_level}
 
 Bypass Init Screen
     :For    ${i}    IN RANGE     5
@@ -195,7 +195,7 @@ Bypass Init Screen
         
 Open Voice Assistant
     [Documentation]    
-    ...    This keyword is used to open Voice Assistant on DRT
+    ...    This keyword is used to open Voice Assistant on main_device_id
     ...    
     ...    *Examples:*
     ...    | Open Voice Assistant |
@@ -204,20 +204,20 @@ Open Voice Assistant
 
 Restart Voice Assistant
     [Documentation]
-    ...    This keyword is used to restart Voice Assistant on DRT
+    ...    This keyword is used to restart Voice Assistant on main_device_id
     ...    
     ...    *Examples:*
     ...    | Open Voice Assistant |
-    Start Adb Command       adb -s &{test_conf['drt']}[devudid] shell am force-stop &{voiceassistant}[app]
+    Start Adb Command       adb -s &{test_conf['main_device_id']}[devudid] shell am force-stop &{voiceassistant}[app]
     Sleep       5s
     Log     Restart the Duros as it has an issue cause sed not display on the front
 
-Open Byton Launcher
+Open amazon Launcher
     [Documentation]    
-    ...    This keyword is used to open Voice Assistant on DRT
+    ...    This keyword is used to open Voice Assistant on main_device_id
     ...    
     ...    *Examples:*
-    ...    | Open Byton Launcher |
+    ...    | Open amazon Launcher |
 
 Get SED ScreenShot
     [Arguments]     ${sc_name}=""
@@ -241,20 +241,20 @@ Get SED Text
     Remove File     ${fl}
     [return]      ${txt}
 
-Get DRT ScreenShot
+Get main_device_id ScreenShot
     [Arguments]     ${sc_name}=""
     [Documentation] 
-    ...    This keyword is used to screenshot on DRT
+    ...    This keyword is used to screenshot on main_device_id
     ...    
     ...    *Examples:*
-    ...    | Get DRT ScreenShot |
+    ...    | Get main_device_id ScreenShot |
     ${date}=        Get Current Date
     ${date}=        Convert Date     ${date}        %Y%m%d%H%M%S
     ${sc_name}=     Run Keyword If     '${sc_name}'=='""'   Set Variable    ${date}
     ...     ELSE    Set Variable    ${sc_name}
-    Get Screenshot From Android    ${OUTPUT DIR}/${sc_name}_drt.png    1
-    Log     <img src="${sc_name}_drt.png">    html=yes
-    [return]    ${OUTPUT DIR}/${sc_name}_drt.png
+    Get Screenshot From Android    ${OUTPUT DIR}/${sc_name}_main_device_id.png    1
+    Log     <img src="${sc_name}_main_device_id.png">    html=yes
+    [return]    ${OUTPUT DIR}/${sc_name}_main_device_id.png
 
 Swipe To Middle
     Swipe To Bottom
@@ -277,7 +277,7 @@ Click Home Button
     ...    
     ...    *Examples:*
     ...    | Click Home Button |
-    Start Adb Command       adb -s &{test_conf['drt']}[devudid] shell input keyevent 3
+    Start Adb Command       adb -s &{test_conf['main_device_id']}[devudid] shell input keyevent 3
 
 Click Quick Access
     [Documentation]    
@@ -302,7 +302,7 @@ Set Default IME
     ...    *Examples:*
     ...    | Set Default IME |
     [Arguments]     ${ime}=com.sinovoice.hcicloudinputvehicle/.service.HciCloudIME
-    Start ADB Command       adb -s &{test_conf['drt']}[devudid] shell settings put secure default_input_method ${ime}
+    Start ADB Command       adb -s &{test_conf['main_device_id']}[devudid] shell settings put secure default_input_method ${ime}
 
 Start ADB Command
     [Arguments]     ${cmd}
@@ -310,7 +310,7 @@ Start ADB Command
     ...    This keyword is execute adb commands
     ...    
     ...    *Examples:*
-    ...    | Start ADB Command |    adb -s &{test_conf['drt']}[devudid] shell input keyevent 3
+    ...    | Start ADB Command |    adb -s &{test_conf['main_device_id']}[devudid] shell input keyevent 3
     ${sy}=      platform.System
     Log     ${cmd}      console=${True} 
     Run Keyword If      '${sy}'=='Windows'    Run Keyword and Return      Start ADB Command Windows     ${cmd}
@@ -334,7 +334,7 @@ Stop App
     ...    
     ...    *Examples:*
     ...    | Click Home Button |
-    Start ADB Command       adb -s &{test_conf['drt']}[devudid] shell am force-stop ${app}
+    Start ADB Command       adb -s &{test_conf['main_device_id']}[devudid] shell am force-stop ${app}
 
 Get Current App
     [Documentation]    
@@ -342,7 +342,7 @@ Get Current App
     ...    
     ...    *Examples:*
     ...    ${ret}   | Get Current App |
-    ${output}=      Start Adb Command       adb -s &{test_conf['drt']}[devudid] shell dumpsys window | grep "mCurrentFocus"
+    ${output}=      Start Adb Command       adb -s &{test_conf['main_device_id']}[devudid] shell dumpsys window | grep "mCurrentFocus"
     [return]    ${output}
 
 Check Current App
@@ -352,13 +352,13 @@ Check Current App
     ${app}      Split String    ${app}      /
     Should Contain      ${app[0]}      ${preApp}
 
-DRT Should Exist App
+main_device_id Should Exist App
     [Arguments]     ${app}
     ${apps}=     Get Current App
     ${apps}      Split String    ${apps}      /
     Should Contain      ${apps[0]}      ${app}
 
-DRT Should Not Exist App
+main_device_id Should Not Exist App
     [Arguments]     ${app}
     ${apps}=     Get Current App
     ${apps}      Split String    ${apps}      /
@@ -366,12 +366,12 @@ DRT Should Not Exist App
 
 Check Present Voice Assistant App
     [Arguments]     ${result}=${True}
-    ${stdout}=      Start Adb Command      adb -s &{test_conf['drt']}[devudid] shell dumpsys window windows | grep Surface:.*101000
+    ${stdout}=      Start Adb Command      adb -s &{test_conf['main_device_id']}[devudid] shell dumpsys window windows | grep Surface:.*101000
     ${re}=      Run Keyword And Return Status      Should Contain      ${stdout}    true
     Should Be Equal      ${re}      ${result}
 
 Get Current App On SED
-    ${stdout}=      Start Adb Command      adb -s &{test_conf['drt']}[devudid] shell dumpsys window windows
+    ${stdout}=      Start Adb Command      adb -s &{test_conf['main_device_id']}[devudid] shell dumpsys window windows
     ${ls}=      Split String        ${stdout}       Window${SPACE}
     ${packs}=        Create List     
     :FOR  ${e}  IN  @{ls}
@@ -402,7 +402,7 @@ SED Should Not Exist App
     Should Not Be True      ${ret}      we expect ${pack} not exist on the sed, but failed
 
 Get SED Left App
-    ${stdout}=      Start Adb Command      adb -s &{test_conf['drt']}[devudid] shell dumpsys window windows
+    ${stdout}=      Start Adb Command      adb -s &{test_conf['main_device_id']}[devudid] shell dumpsys window windows
     ${ls}=      Split String        ${stdout}       Window${SPACE}
     FOR  ${e}  IN  @{ls}
         Log      ${e}
@@ -420,7 +420,7 @@ Get SED Left App
     [return]    ${app}
 
 Get SED Right App
-    ${stdout}=      Start Adb Command      adb -s &{test_conf['drt']}[devudid] shell dumpsys window windows
+    ${stdout}=      Start Adb Command      adb -s &{test_conf['main_device_id']}[devudid] shell dumpsys window windows
     ${ls}=      Split String        ${stdout}       Window${SPACE}  
     FOR  ${e}  IN  @{ls}
         Log      ${e}
@@ -459,17 +459,17 @@ SED Right Should Not Exist App
     Should Not Contain  ${packs}    ${app}      msg=we expect ${app} not exist on the right sed, but failed,we got ${packs}
 
 Get Installed App
-    [Arguments]     ${grp}=byton
+    [Arguments]     ${grp}=amazon
     [Documentation]
     ...     This keyword is used to list all preinstalled app
     ...
     ...    *Examples:*
     ...    ${ret}   | Get Installed App |
-    ${stdout}=      Start Adb Command       adb -s &{test_conf['drt']}[devudid] shell pm list package |grep "${grp}"
+    ${stdout}=      Start Adb Command       adb -s &{test_conf['main_device_id']}[devudid] shell pm list package |grep "${grp}"
     [return]    ${stdout}
 
 Check Installed App
-    [Arguments]     ${grp}=byton
+    [Arguments]     ${grp}=amazon
     [Documentation]
     ...     This keyword is used to check preinstalled app
     ...
@@ -533,21 +533,21 @@ Click Bottom Home
     [Documentation]
     ...     This keyword is used to click Home button
     ...    pre step
-    ...     Connect Drt     android:///&{test_conf['drt']}[devudid]?cap_method=adbcap&touch_method=minitouch
-    ...     Set Airtest Snaps Dir       ${EXECDIR}/res/screenshot/launcher/drt     dir_type=drt
+    ...     Connect main_device_id     android:///&{test_conf['main_device_id']}[devudid]?cap_method=adbcap&touch_method=minitouch
+    ...     Set Airtest Snaps Dir       ${EXECDIR}/res/screenshot/launcher/main_device_id     dir_type=main_device_id
     ...     Set Airtest Log Dir     ${OUTPUT DIR}/screen_launcher
     ...    *Examples:*
     ...    | Click Bottom Home |
-    Run Keyword And Ignore Error        Touch On DRT        launcher_home.png
+    Run Keyword And Ignore Error        Touch On main_device_id        launcher_home.png
 
 Logcat Should Exist Log
     [Arguments]     ${log}      ${filter}="."       ${alias}=logcat     ${line}=2000
     [Documentation]
-    ...     This keyword is used to check logcat logs on /data/vendor/bytonlogs/logcat_log
+    ...     This keyword is used to check logcat logs on /data/vendor/amazonlogs/logcat_log
     ...
     ...    *Examples:*
     ...    |  Logcat Should Exist Log     |  get DrivingMode:ECO  |
-    ${r}=   Start ADB Command       adb -s &{test_conf['drt']}[devudid] shell tail -n ${line} /data/vendor/bytonlogs/logcat_log | grep -i ${filter}
+    ${r}=   Start ADB Command       adb -s &{test_conf['main_device_id']}[devudid] shell tail -n ${line} /data/vendor/amazonlogs/logcat_log | grep -i ${filter}
     ${ch_list}=       Run Keyword And Ignore Error    Should be String        ${log}
     ${log_list}=   Run Keyword If      '${ch_list[0]}'!='PASS'     Convert To List     ${log}
     ...     ELSE      Set Variable    ${log}
@@ -557,11 +557,11 @@ Logcat Should Exist Log
 Logcat Should Not Exist Log
     [Arguments]     ${log}      ${filter}="."   ${alias}=logcat     ${line}=2000
     [Documentation]
-    ...     This keyword is used to check logcat logs NOT on /data/vendor/bytonlogs/logcat_log
+    ...     This keyword is used to check logcat logs NOT on /data/vendor/amazonlogs/logcat_log
     ...
     ...    *Examples:*
     ...    |  Logcat Should Not Exist Log     |  get DrivingMode:ECO  |
-    ${r}=   Start ADB Command       adb -s &{test_conf['drt']}[devudid] shell tail -n ${line} /data/vendor/bytonlogs/logcat_log | grep -i ${filter}
+    ${r}=   Start ADB Command       adb -s &{test_conf['main_device_id']}[devudid] shell tail -n ${line} /data/vendor/amazonlogs/logcat_log | grep -i ${filter}
     ${ch_list}=       Run Keyword And Ignore Error    Should be String        ${log}
     ${log_list}=   Run Keyword If      '${ch_list[0]}'!='PASS'     Convert To List     ${log}
     ...     ELSE      Set Variable    ${log}

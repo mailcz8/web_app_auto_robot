@@ -14,7 +14,7 @@ ${start_appium}     appium  -p  &{test_conf['appium']}[port] --command-timeout 6
 
 *** Keyword ***
 SSH Login
-    [Arguments]     ${server}=&{test_conf['appium']}[server]   ${port}=&{test_conf['appium']}[sshport]     ${login}=bytonsqa    ${loginpwd}=test123!   ${alias}=ssh
+    [Arguments]     ${server}=&{test_conf['appium']}[server]   ${port}=&{test_conf['appium']}[sshport]     ${login}=amazonsqa    ${loginpwd}=test123!   ${alias}=ssh
     Open connection     ${server}       alias=${alias}       port=${port}
     Login       ${login}    ${loginpwd}
     Set Client Configuration    prompt=$
