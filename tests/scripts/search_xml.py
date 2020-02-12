@@ -8,12 +8,32 @@ result_dir = os.path.join(repl_dir,'results')
 file_name = 'output.xml'
 file_name = os.path.join(result_dir,file_name)
 
+
 def get_foldr_content(f_path):
     folder_info = os.walk(f_path)
-    print(folder_info)
-    for a, b, c in folder_info:
-        print(a, b, c)
-get_foldr_content(result_dir)
+    for dir, fn, c in folder_info:
+        print(a)
+        # print(b)
+        # print(c[0], c)
+        # break
+# get_foldr_content(result_dir)
+
+def apple(name):
+    return 'xyz' + name
+apple("Aldne")
+
+def find_end_with_re(fname, start_point=None, end_point=None):
+    f = open(file_name, '+r')
+    end_point = 'End Web Test'
+    new_list = []
+    new_str = ''
+    for line in f.readlines():
+        if re.search(r'{}'.format('<kw name="'), line):
+            new_list.append(line)
+            new_str += line
+    return new_str
+this_str = find_end_with_re(file_name).split('\n')
+# print(this_str[0:5])
 
 def find_end(f_name):
     f = open(f_name, 'r')

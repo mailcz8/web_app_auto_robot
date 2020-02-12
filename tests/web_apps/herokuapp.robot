@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation  This is basic info about the Byton test cases
+Documentation  This is basic info about the Web_App test cases
 Library  SeleniumLibrary
 Suite Setup     Run Keyword And Ignore Error    Begin Web Test
 Suite Teardown   Run Keyword And Ignore Error    End Web Test
