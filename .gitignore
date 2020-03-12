@@ -2,6 +2,7 @@
 # results/
 results/log.html
 results/output.xml
+results/output.*
 results/report.html
 *.html
 *.xml
