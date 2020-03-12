@@ -1,6 +1,8 @@
 #!/usr/bin/python
 import subprocess as sub
-import sys, os
+import sys
+import os
+
 '''ref https://www.youtube.com/watch?v=2Fp1N6dof0Y'''
 
 current_path = os.path.dirname(os.path.realpath(__file__))
