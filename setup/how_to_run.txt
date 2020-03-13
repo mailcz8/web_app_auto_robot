@@ -1,6 +1,10 @@
 Pull repl: git clone: (Note, this version will only support Mac for now)
 #>git clone git@github.com:mailcz8/web_app_auto_robot.git
 
+Install pip:
+* curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+* python get-pip.py
+
 Setup virtualenv:
 #>pip install virtualenv
 #>virtualenv venv
