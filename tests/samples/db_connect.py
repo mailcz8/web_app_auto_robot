@@ -5,6 +5,7 @@ import os
 from employee import Employee
 
 '''
+Title: Python SQLite Tutorial: Complete Overview - Creating a Database, Table, and Running Queries
 Course info: https://www.youtube.com/watch?v=RSl87lqOXDE
 '''
 root_path = os.path.dirname(os.path.dirname(os.path.abspath('.')))
