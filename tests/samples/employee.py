@@ -1,11 +1,18 @@
 #!/usr/bin/python
 
+import os
+
 '''
+Topic: Class Inherit
 Course info: https://www.youtube.com/watch?v=RSl87lqOXDE
 '''
 
+root_apth = root_path = os.path.dirname(os.path.dirname(os.path.abspath('.')))
+result_dir = os.path.join(root_path, 'results')
+res_dir = os.path.join(root_path, 'resources')
+db_file_path = os.path.join(res_dir, 'test_data')
 
-class Employee:
+class Employee(object):
     raise_amt = 1.04
     def __init__(self, fname, lname, pay):
         self.fname = fname
