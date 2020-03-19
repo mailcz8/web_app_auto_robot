@@ -1,0 +1,30 @@
+Pull repl: git clone: (Note, this version will only support Mac for now)
+#>git clone git@github.com:mailcz8/web_app_auto_robot.git
+
+Install pip:
+* curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+* python get-pip.py
+
+Setup virtualenv:
+#>pip install virtualenv
+#>virtualenv venv
+#>source venv/bin/activate
+
+Export driver:
+#>cd <web_driver_path>
+#>pwd
+#>export PATH=$PATH:./resources/drivers
+
+Install Libraries:
+#>pip install -r setup/requirements.txt
+
+Run testcases
+@repl_home_dir
+#>robot --argumentfile config/args.arg  -d results -i P0 tests/
+or
+#>robot --argumentfile config/args.arg  -d results tests/amazon_sample1.robot
+
+
+
+
+
