@@ -1,5 +1,6 @@
-from __future__ import division, absolute_import, print_function
+#!/usr/bin/python
 
+from __future__ import division, absolute_import, print_function
 import os
 import requests as req
 import subprocess as sub
