@@ -80,6 +80,17 @@ class SQALite3(object):
         except:
             print("No table found!!!")
 
+    def select_entry_where(self, search_val='Pony'):
+        table_name = 'employees'
+        print('Run func: select_entry_where table = {} and where = {}'.format(table_name, search_val))
+        c = conn.cursor()
+        c.execute('select * from {} where last=?'.format(table_name), (search_val,))
+        res = c.fetchall()
+        print(res)
+        c.execute('select * from {} where last=:last'.format(table_name), {'last':'Kong'})
+        res = c.fetchall()
+        print(res)
+
     def drop_table(self, table_name='employees'):
         c = conn.cursor()
         try:
@@ -106,7 +117,7 @@ if __name__ == "__main__":
     emp3 = emp("Sunday", "School", 80000)
     emp4 = emp("Pitch", "White", 80000)
     emp5 = emp("Cookie", "Monster", 80000)
-    emp6 = emp("Last", "End", 80000)
+    emp6 = emp("Last", "Pony", 80000)
     x.insert_entry_remote(emp1.fname, emp1.lname, emp1.pay)
     x.insert_entry_remote_column_name(emp2.fname, emp2.lname, emp2.pay)
     x.insert_entry_remote(emp3.fname, emp3.lname, emp3.pay)
@@ -116,6 +127,7 @@ if __name__ == "__main__":
     x.select_entry()
     # x.insert_entry_remote(emp2)
     # x.demo_select_entry()
+    x.select_entry_where()
 
     x.drop_table()
     x.select_entry()
