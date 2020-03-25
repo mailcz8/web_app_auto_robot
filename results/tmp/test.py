@@ -50,7 +50,38 @@ def solution(n, a, b):
             return True
         else:
             return False
+# print(solution(9088911,65,117))
+# print(solution(7620085,17,110))
+# print(solution(7576302, 48, 99))
 
-print(solution(9088911,65,117))
-print(solution(7620085,17,110))
-print(solution(7576302, 48, 99))
+def next_palindrome(num=None):
+    next_palin = num
+    try:
+        if isinstance(num, str)==True:
+            print("{} is not an integer".format(num))
+        else:
+            if num < 10:
+                next_palin = 11
+            else:
+                next_num = int(num) + 1
+                while next_num != int(str(next_num)[::-1]):
+                    next_num += 1
+                next_palin = next_num
+        print('The {} next palindrome = {}'.format(num, next_palin))
+        return next_palin
+    except:
+        print("{} is not an integer".format(num))
+
+next_palindrome(0)
+next_palindrome(10)
+next_palindrome(11)
+next_palindrome(101)
+next_palindrome()
+next_palindrome(1000)
+next_palindrome(12321)
+next_palindrome(48576676)
+next_palindrome(11.5)
+next_palindrome(-1)
+next_palindrome(-1000)
+next_palindrome(0.3)
+next_palindrome('Sunday')

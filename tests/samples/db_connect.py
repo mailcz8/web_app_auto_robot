@@ -46,20 +46,24 @@ class SQALite3(object):
         c.execute("INSERT INTO employees VALUES(?, ?, ?)", (args[0], args[1], args[2]))
         conn.commit()
 
-    def insert_entry_remote(self, *args):
-        # print(args)
+    def insert_entry_remote(self, emp):
+        print('Insert employee:', emp.first, emp.last, emp.pay)
         c = conn.cursor()
-        # sample: c.execute("INSERT INTO employees VALUES('Mary', 'Lu', 808080)")
-        c.execute("INSERT INTO employees VALUES (?, ?, ?)", (args[0], args[1], args[2]))
-        conn.commit()
+        # # sample: c.execute("INSERTinsert_entry_remote INTO employees VALUES('Mary', 'Lu', 808080)")
+        # # c.execute("INSERT INTO employees VALUES (?, ?, ?)", (args[0], args[1], args[2]))
+        with conn:
+            c.execute('insert into employees values (:first, :last, :pay)', {'first':emp.first, 'last':emp.last, 'pay':emp.pay})
 
-    def insert_entry_remote_column_name(self, *args):
-        # print(args)
+    def insert_entry_remote_column_name(self, emp):
+        print('Insert employee:', emp.first, emp.last, emp.pay)
         c = conn.cursor()
         # sample: c.execute("INSERT INTO employees VALUES('Mary', 'Lu', 808080)")
-        c.execute("INSERT INTO employees VALUES (:first, :last, :pay)",
-                  {'first': args[0], 'last': args[1], 'pay': args[2]})
-        conn.commit()
+        # c.execute("INSERT INTO employees VALUES (:first, :last, :pay)",
+        #           {'first': args[0], 'last': args[1], 'pay': args[2]})
+        # conn.commit()
+        with conn:
+            c.execute("INSERT INTO employees VALUES (:first, :last, :pay)",
+                      {'first':emp.first, 'last':emp.last, 'pay':emp.pay})
 
     def select_entry(self, query='', option=3):
         c = conn.cursor()
@@ -87,9 +91,17 @@ class SQALite3(object):
         c.execute('select * from {} where last=?'.format(table_name), (search_val,))
         res = c.fetchall()
         print(res)
-        c.execute('select * from {} where last=:last'.format(table_name), {'last':'Kong'})
+        c.execute('select * from {} where last=:last'.format(table_name), {'last': 'Kong'})
         res = c.fetchall()
         print(res)
+
+    def get_emps_by_lat(self, lastname="Pony"):
+        table_name = 'employees'
+        c = conn.cursor()
+        with conn:
+            c.execute('select * from employees where last=:last', {'last': lastname})
+        print('get_emps_by_lat returns = ', c.fetchall())
+        return c.fetchall()
 
     def drop_table(self, table_name='employees'):
         c = conn.cursor()
@@ -118,17 +130,20 @@ if __name__ == "__main__":
     emp4 = emp("Pitch", "White", 80000)
     emp5 = emp("Cookie", "Monster", 80000)
     emp6 = emp("Last", "Pony", 80000)
-    x.insert_entry_remote(emp1.fname, emp1.lname, emp1.pay)
-    x.insert_entry_remote_column_name(emp2.fname, emp2.lname, emp2.pay)
-    x.insert_entry_remote(emp3.fname, emp3.lname, emp3.pay)
-    x.insert_entry_remote(emp4.fname, emp4.lname, emp4.pay)
-    x.insert_entry_remote(emp5.fname, emp3.lname, emp5.pay)
-    x.insert_entry_remote(emp6.fname, emp6.lname, emp6.pay)
+    # x.insert_entry_remote(emp1.fname, emp1.lname, emp1.pay)
+    # x.insert_entry_remote_column_name(emp2.fname, emp2.lname, emp2.pay)
+    x.insert_entry_remote(emp1)
+    x.insert_entry_remote(emp2)
+    x.insert_entry_remote(emp3)
+    x.insert_entry_remote(emp4)
+    x.insert_entry_remote(emp5)
+    x.insert_entry_remote(emp6)
     x.select_entry()
     # x.insert_entry_remote(emp2)
     # x.demo_select_entry()
     x.select_entry_where()
 
+    x.get_emps_by_lat('School')
     x.drop_table()
     x.select_entry()
     x.close_connection()

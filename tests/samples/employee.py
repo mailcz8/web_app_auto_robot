@@ -12,24 +12,23 @@ result_dir = os.path.join(root_path, 'results')
 res_dir = os.path.join(root_path, 'resources')
 db_file_path = os.path.join(res_dir, 'test_data')
 
-class EmployeeDB:
+class EmployeeDB():
     raise_amt = 1.04
-    def __init__(self, fname, lname, pay):
-        self.fname = fname
-        self.lname = lname
-        self.email = self.fname + self.lname + '@gmail.com'
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.email = self.first + self.last + '@gmail.com'
         self.pay = pay
 
     @property
     def full_name(self):
-        return '{} {}'.format(self.fname, self.lname)
+        return '{} {}'.format(self.first, self.last)
 
     @property
     def apply_raise(self):
         self.pay = self.pay * self.raise_amt
         return self.pay
 
-    
 
 class Employee(object):
     raise_amt = 1.04
