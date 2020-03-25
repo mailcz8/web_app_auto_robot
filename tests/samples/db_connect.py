@@ -95,13 +95,34 @@ class SQALite3(object):
         res = c.fetchall()
         print(res)
 
-    def get_emps_by_lat(self, lastname="Pony"):
+    def get_emp_by_name(self, lastname):
         table_name = 'employees'
         c = conn.cursor()
         with conn:
             c.execute('select * from employees where last=:last', {'last': lastname})
-        print('get_emps_by_lat returns = ', c.fetchall())
+        print('get_emp_by_name returns = ', c.fetchall())
         return c.fetchall()
+
+    def update_emp(self, emp, pay):
+        print('Update emp info: ', emp.first, emp.last, emp.pay, 'to', pay)
+        table_name = 'employees'
+        c = conn.cursor()
+        with conn:
+            c.execute(f'''update {table_name} set pay = :pay 
+                where first = :first and last = :last''',
+                {'first': emp.first, 'last': emp.last, 'pay': pay})
+            c.execute('select * from employees where last=:last', {'last': emp.last})
+        print('update_emp = ', c.fetchall())
+
+    def delete_emp(self, emp):
+        print('Delete emp: ', emp.first, emp.last, emp.pay)
+        table_name = 'employees'
+        c = conn.cursor()
+        with conn:
+            c.execute(f'delete from {table_name} where first=:first and last=:last',
+                      {'first': emp.first, 'last': emp.last})
+        c.execute(f'select * from {table_name}')
+        print('After delete = ', c.fetchall())
 
     def drop_table(self, table_name='employees'):
         c = conn.cursor()
@@ -143,7 +164,9 @@ if __name__ == "__main__":
     # x.demo_select_entry()
     x.select_entry_where()
 
-    x.get_emps_by_lat('School')
+    x.get_emp_by_name('School')
+    x.update_emp(emp4, 444444)
+    x.delete_emp(emp4)
     x.drop_table()
     x.select_entry()
     x.close_connection()
