@@ -5,5 +5,5 @@ doskey gs=git status
 doskey gb=git branch -a
 doskey gd='git diff'
 doskey gbp='git remote prune origin'
-doskey gitzap=git add . && git commit -m "update" && git push
+doskey gitzap=git add . && git commit -m $1 && git push
 echo [Done]
