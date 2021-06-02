@@ -5,7 +5,7 @@ robotframework-appiumlibrary==1.4.6
 robotframework-requests==0.5.0
 robotframework-seleniumlibrary==3.2.0
 robotframework-pabot==0.85
-urllib3==1.24.2
+urllib3==1.26.5
 opencv-python==4.0.1.24
 PyYAML>=3.12
 requests
